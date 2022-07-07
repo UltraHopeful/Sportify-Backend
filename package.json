@@ -4,16 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend.git"
   },
   "dependencies": {
+    "body-parser": "*",
+    "dotenv": "^16.0.1",
     "express": "*",
-    "body-parser":"*",
-    "mongoose":"*"
+    "mongoose": "*"
   },
   "author": "",
   "license": "ISC"
