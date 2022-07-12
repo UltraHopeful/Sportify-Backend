@@ -7,7 +7,8 @@ app.use(
         extended: true
     })
 )
-app.use(express.json())
+app.use(express.json({limit: '10mb'}))
+// app.use(express.bodyParser({limit: '10mb'}));
 
 
 // connect to db
@@ -25,7 +26,11 @@ mongoose.connect(uri, {
 
 
 const membershipRoute = require("./routes/membership");
+const facilitiesRoute = require("./routes/facilities");
+const reservationsRoute = require("./routes/reservations");
 app.use(membershipRoute);
+app.use('/facility', facilitiesRoute);
+app.use('/reservation', reservationsRoute);
 
 app.use("/test",(req,res) => {
     res.send("It works!'")
