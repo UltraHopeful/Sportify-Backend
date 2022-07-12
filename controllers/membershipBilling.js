@@ -1,11 +1,11 @@
-var MembershipDB = require('../models/membership');
-const { v4: uuidv4 } = require('uuid');
+var MembershipBillingDB = require('../models/membershipBilling');
 
-// retrieve membership details
-exports.findMembership = (req, res)=>{
+// retrieve billing information based on user id
+exports.findBillingInfo = (req, res)=>{
     if(req.params.id){
-        const id = req.params.id;
-        MembershipDB.findOne({id:id})
+        const id = String(req.params.id);
+
+        MembershipBillingDB.findOne({ id: id})
             .then(data =>{
                 if(!data){
                     return res.send({ 
@@ -21,6 +21,7 @@ exports.findMembership = (req, res)=>{
                 }
             })
             .catch(err =>{
+                console.log(err);
                 return res.status(500).send({ 
                     success : false,
                     message : "Internal server error"
@@ -29,24 +30,15 @@ exports.findMembership = (req, res)=>{
 
     }
     else{
-        MembershipDB.find()
-            .then(memShip => {
-                return res.send({ 
-                    success : true,
-                    data : memShip
-                })
-            })
-            .catch(err => {
-                return res.status(500).send({ 
-                    success : false,
-                    message : "Internal server error"
-                })
-            })
+        return res.status(400).send({ 
+            success : false,
+            message : "User id missing in the request"
+        })
     }
 }
 
-// create and save new membership
-exports.createMembership = (req,res)=>{
+// create and save new Billing info
+exports.createBillingInfo = (req,res)=>{
     // input validation
     if(!req.body){
         return res.status(400).send({ 
@@ -55,23 +47,24 @@ exports.createMembership = (req,res)=>{
         })
     }
 
-    const memInfo = new MembershipDB({
-        id : uuidv4(),
-        user_id : req.body.user_id,
-        total_cost : req.body.total_cost,
-        plan_name : req.body.plan_name,
-        start_date : req.body.start_date,
-        end_date : req.body.end_date,
-        is_inactive : req.body.is_inactive
+    const billingInfo = new MembershipBillingDB({
+        id : req.body.id,
+        first_name : req.body.first_name,
+        last_name : req.body.last_name,
+        address : req.body.address,
+        city : req.body.city,
+        state : req.body.state,
+        zip_code : req.body.zip_code,
+        country : req.body.country
     })
 
     // save details in the database
-    memInfo.save(memInfo)
+    billingInfo.save(billingInfo)
         .then(data => {
             return res.status(201).json({
-                message:"Membership added",
+                message:"Billing info added",
                 success:true,
-                data:memInfo
+                data:billingInfo
             })
         })
         .catch(err =>{
@@ -82,8 +75,8 @@ exports.createMembership = (req,res)=>{
         });
 }
 
-// Update membership
-exports.updateMembership = (req, res)=>{
+// Update exising billing info
+exports.updateBillingInfo = (req, res)=>{
     if(!req.body){
         return res.status(400).send({ 
             success : false,
@@ -92,16 +85,16 @@ exports.updateMembership = (req, res)=>{
     }
 
     const id = req.params.id;
-    MembershipDB.findOneAndUpdate({id:id}, req.body, { useFindAndModify: false})
+    MembershipBillingDB.findOneAndUpdate({id:id}, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
                 return res.status(404).send({ 
                     success : false,
-                    message : "No membership found "
+                    message : "No billing information found "
                 })
             }else{
                 return res.status(200).json({
-                    message:"Membership updated",
+                    message:"Billing info updated",
                     success:true
                 })
             }
