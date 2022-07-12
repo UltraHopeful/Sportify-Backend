@@ -1,6 +1,7 @@
 //Author: Aravind Jayanthi (B00868943)
 //Email: ar687531@dal.ca
 const Facilities = require("../models/facilities");
+// const ReservationController = require("../controllers/reservations");
 
 const getSingleFacilityData = async (facilityId) => {
     const facilityData = await Facilities.findOne({ id: facilityId });
@@ -37,5 +38,11 @@ const getFacilitiesData = async (facilityIds) => {
         }
     })
 }
+
+// const getBookedTimeslots = async (facility, date) => {
+//     const facilitId = facility.id;
+//     const reservations = await ReservationController.getReservationByFacilityIdAndDate(facilitId, date);
+//     return reservations;
+// }
 
 module.exports = { getSingleFacilityData, getFacilitiesData };
