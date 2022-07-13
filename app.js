@@ -9,7 +9,7 @@ app.use(
     })
 )
 app.use(express.json({limit: '10mb'}))
-// app.use(express.bodyParser({limit: '10mb'}));
+app.use(cors())
 
 
 // connect to db
