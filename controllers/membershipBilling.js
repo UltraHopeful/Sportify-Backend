@@ -2,6 +2,7 @@ var MembershipBillingDB = require('../models/membershipBilling');
 
 // retrieve billing information based on user id
 exports.findBillingInfo = (req, res)=>{
+    console.log("findBillingInfo called");
     if(req.params.id){
         const id = String(req.params.id);
 
@@ -11,12 +12,20 @@ exports.findBillingInfo = (req, res)=>{
                     return res.send({ 
                         success : true,
                         data : "",
-                        message : "No billing information found "
+                        message : "No billing information found ",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        }
                     })
                 }else{
                     return res.send({ 
                         success : true,
-                        data : data
+                        data : data,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        }
                     })
                 }
             })
@@ -39,6 +48,7 @@ exports.findBillingInfo = (req, res)=>{
 
 // create and save new Billing info
 exports.createBillingInfo = (req,res)=>{
+    console.log("createBillingInfo called");
     // input validation
     if(!req.body){
         return res.status(400).send({ 
@@ -77,6 +87,7 @@ exports.createBillingInfo = (req,res)=>{
 
 // Update exising billing info
 exports.updateBillingInfo = (req, res)=>{
+    console.log("updateBillingInfo called");
     if(!req.body){
         return res.status(400).send({ 
             success : false,

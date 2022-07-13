@@ -11,7 +11,7 @@ exports.findMembership = (req, res)=>{
                     return res.send({ 
                         success : true,
                         data : "",
-                        message : "No billing information found "
+                        message : "No membership found "
                     })
                 }else{
                     return res.send({ 
@@ -45,6 +45,35 @@ exports.findMembership = (req, res)=>{
     }
 }
 
+// retrieve membership details
+exports.findMemberships = (req, res)=>{
+    if(req.params.user_id){
+        const user_id = req.params.user_id;
+        MembershipDB.find({user_id:user_id, status:'Ongoing'})
+            .then(data =>{
+                if(!data){
+                    return res.send({ 
+                        success : true,
+                        data : "",
+                        message : "No membership found "
+                    })
+                }else{
+                    return res.send({ 
+                        success : true,
+                        data : data
+                    })
+                }
+            })
+            .catch(err =>{
+                return res.status(500).send({ 
+                    success : false,
+                    message : "Internal server error"
+                })
+            })
+
+    }
+}
+
 // create and save new membership
 exports.createMembership = (req,res)=>{
     // input validation
@@ -62,7 +91,7 @@ exports.createMembership = (req,res)=>{
         plan_name : req.body.plan_name,
         start_date : req.body.start_date,
         end_date : req.body.end_date,
-        is_inactive : req.body.is_inactive
+        status : req.body.status
     })
 
     // save details in the database
@@ -93,6 +122,30 @@ exports.updateMembership = (req, res)=>{
 
     const id = req.params.id;
     MembershipDB.findOneAndUpdate({id:id}, req.body, { useFindAndModify: false})
+        .then(data => {
+            if(!data){
+                return res.status(404).send({ 
+                    success : false,
+                    message : "No membership found "
+                })
+            }else{
+                return res.status(200).json({
+                    message:"Membership updated",
+                    success:true
+                })
+            }
+        })
+        .catch(err =>{
+            return res.status(500).json({
+                message:"Internal server error",
+                success:false
+            });
+        })
+}
+
+exports.cancelMembership = (req, res)=>{
+    
+    MembershipDB.findOneAndUpdate({status:'Ongoing'}, {status:'Cancelled'}, { useFindAndModify: false})
         .then(data => {
             if(!data){
                 return res.status(404).send({ 
