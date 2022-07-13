@@ -7,7 +7,7 @@ var schema = new mongoose.Schema({
     plan_name : String,
     start_date : Date,
     end_date : Date,
-    is_inactive : Boolean
+    status : String
 })
 
 const MembershipDB = mongoose.model('membership', schema);
