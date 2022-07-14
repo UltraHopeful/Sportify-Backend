@@ -1,19 +1,20 @@
-const express = require("express")
-const router = express.Router()
+const express = require('express');
+const route = express.Router()
 
-router.get("/memtest", (req,res)=>{
-    try{
-        return res.status(200).json({
-            message : "Users retrieved",
-            success: true
-        })
-    }
-    catch(err){
-        return res.status(500).json({
-            message:"Internal server error",
-            success:false
-        })
-    }
-})
+const billingController = require('../controllers/membershipBilling');
+const membershipController = require('../controllers/membership');
 
-module.exports = router;
+// billing API
+route.post('/api/membership/create-billing-info', billingController.createBillingInfo);
+route.get('/api/membership/billing-info/:id', billingController.findBillingInfo);
+route.put('/api/membership/update-billing-info/:id', billingController.updateBillingInfo);
+
+// membership API
+route.post('/api/membership/create-purchase', membershipController.createMembership);
+route.get('/api/membership/purchase/user/:user_id', membershipController.findMemberships);
+route.get('/api/membership/purchase/:id', membershipController.findMembership);
+route.put('/api/membership/update-purchase/:id', membershipController.updateMembership);
+route.put('/api/membership/cancel-purchase', membershipController.cancelMembership);
+
+
+module.exports = route;
