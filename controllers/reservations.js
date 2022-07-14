@@ -19,6 +19,23 @@ const getAllReservations = async (userId) => {
     });
 }
 
+const getReservationByFacilityIdAndDate = async (facilityId, date) => {
+    const reservations = await Reservations.find({facility_id: facilityId});
+    const bookedSlotsForDate = reservations?.filter(reservation => {
+        return equalDates(reservation.from, new Date(date)) && equalDates(reservation.to, new Date(date));
+    });
+    return bookedSlotsForDate?.map(bookedSlot => {
+        return {
+            from: bookedSlot.from,
+            to: bookedSlot.to,
+        };
+    })
+}
+
+function equalDates(date1, date2) {
+    return date1.toDateString() === date2.toDateString();
+}
+
 const getRawReservation = async (reservationId) => {
     const reservation = await Reservations.findOne({id: reservationId});
     return new Promise((resolve) => {
@@ -96,4 +113,4 @@ const getSingleReservation = async (reservationId) => {
     });
 }
 
-module.exports = { getAllReservations, getSingleReservation, getRawReservation };
+module.exports = { getAllReservations, getSingleReservation, getRawReservation, getReservationByFacilityIdAndDate };

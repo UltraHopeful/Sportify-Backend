@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 require('dotenv').config();
 var express = require('express');
+var cors = require('cors');
 var app = express();
 app.use(
     express.urlencoded({
@@ -8,7 +9,7 @@ app.use(
     })
 )
 app.use(express.json({limit: '10mb'}))
-// app.use(express.bodyParser({limit: '10mb'}));
+app.use(cors())
 
 
 // connect to db
