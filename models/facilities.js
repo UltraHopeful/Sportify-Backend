@@ -3,6 +3,9 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
+/**
+ * This is general schema for facilities
+ */
 const facilitiesSchema = new Schema({
     id: String,
     name: String,
