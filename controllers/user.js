@@ -8,7 +8,8 @@ const mail = require("../service/mail");
 
 const emailAddress = "sportify5709@gmail.com";
 
-const mailUrl = "https://localhost:5000"
+const mailUrl = process.env.FRONTEND_URL;
+
 
 const register = async (request, response) => {
   const email = request.body.email;
@@ -108,14 +109,15 @@ const verifyAccount = async (request, response) => {
 };
 
 const signin = async (request, response) => {
+  console.log(mailUrl);
   const requestBody = request.body;
 
   const targetEmail = requestBody.email;
   const targetPassword = requestBody.password;
   try {
-    const userExists = await User.findOne({ targetPassword });
+    const userExists = await User.findOne({ email:targetEmail });
     console.log(userExists);
-    if (userExists && userExists.email === targetEmail) {
+    if (userExists) {
       // if user verify check
       if (userExists.isVerify) {
         const checkPassword = await bcrypt.compare(
@@ -241,7 +243,7 @@ const resetPassword = async (request, response) => {
         from: emailAddress,
         to: targetEmail,
         subject: "Sportify Password Reset",
-        html: `<p>Hi ${userExists.firstName}, you requested for password reset. So, link to reset password is below: <br/> <a href=${mailUrl}/api/change-password?token=${jwtToken}>Reset Password</a><br/> Thanks, Sportify Team</p>`,
+        html: `<p>Hi ${userExists.firstName}, you requested for password reset. So, link to reset password is below: <br/> <a href=${mailUrl}/change-password?token=${jwtToken}>Reset Password</a><br/> Thanks, Sportify Team</p>`,
       };
 
       mail.sendMail(mailContent, function (error, info) {
@@ -335,6 +337,38 @@ const changePassword = async (request, response) => {
   }
 };
 
+const deleteProfile  = async (request, response) => {
+  const requestBody = request.body;
+  const userId = requestBody.id;
+
+  try {
+    const isUserFound = await User.countDocuments({ _id: userId });
+    console.log(isUserFound);
+    if (isUserFound > 0) {
+      console.log(mongoose.Types.ObjectId.isValid(userId));
+      const isProfileDelete = await User.findByIdAndDelete( userId );
+      console.log(isProfileDelete);
+      if(isProfileDelete){
+        response.status(200).json({
+          message: "Your profile deleted successfully.",
+        });
+      }else{
+        response.status(500).json({
+          message: "Some error occurs at time of delete.",
+        });
+      }
+    }
+    else{
+      response.status(401).json({
+        message: "No user found to connected Id",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    response.status(500).json({ message: "Internal Server error" });
+  }
+}
+
 module.exports = {
   register,
   signin,
@@ -343,5 +377,5 @@ module.exports = {
   resetPassword,
   resetPasswordCheck,
   changePassword,
-  // deleteProfile,
+  deleteProfile,
 };
