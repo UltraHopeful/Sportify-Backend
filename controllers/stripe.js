@@ -4,23 +4,25 @@ const stripe = Stripe(process.env.STRIPE_KEY)
 
 require("dotenv").config();
 
-
 const checkoutSession = async (request,response) => {
-    const session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
+    console.log(request.body)
+    const line_items = request.body.backendReqBody.map((item)=>{
+        return{
             price_data: {
-              currency: 'usd',
-              product_data: {
-                name: 'T-shirt',
+                currency: 'CAD',
+                product_data: {
+                    name: item.plan_name,
+                },
+                unit_amount: item.total_cost * 100,
               },
-              unit_amount: 2000,
-            },
-            quantity: 1,
-          },
-        ],
+              quantity: 1,
+        }
+    })
+    console.log(line_items)
+    const session = await stripe.checkout.sessions.create({
+        line_items,
         mode: 'payment',
-        success_url: 'http://localhost:3000/payment-success',
+        success_url: 'http://localhost:5000/api/membership/create-purchase',
         cancel_url: 'http://localhost:3000/membership',
       });
     
