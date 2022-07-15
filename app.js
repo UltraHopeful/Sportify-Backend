@@ -29,10 +29,14 @@ mongoose.connect(uri, {
 const membershipRoute = require("./routes/membership");
 const facilitiesRoute = require("./routes/facilities");
 const reservationsRoute = require("./routes/reservations");
+const merchandiseRoute = require("./routes/merchandise");
+const stripeRoute = require("./routes/stripe");
 const blogRoute = require("./routes/blog");
 app.use(membershipRoute);
 app.use('/facility', facilitiesRoute);
 app.use('/reservation', reservationsRoute);
+app.use(merchandiseRoute);
+app.use(stripeRoute);
 app.use('/blogs',blogRoute);
 
 app.use("/test",(req,res) => {

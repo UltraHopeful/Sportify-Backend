@@ -1,20 +1,19 @@
 const express = require('express');
-const route = express.Router()
+const router = express.Router()
 
 const billingController = require('../controllers/membershipBilling');
 const membershipController = require('../controllers/membership');
 
 // billing API
-route.post('/api/membership/create-billing-info', billingController.createBillingInfo);
-route.get('/api/membership/billing-info/:id', billingController.findBillingInfo);
-route.put('/api/membership/update-billing-info/:id', billingController.updateBillingInfo);
+router.post('/api/membership/create-billing-info', billingController.createBillingInfo);
+router.get('/api/membership/billing-info/:id', billingController.findBillingInfo);
+router.put('/api/membership/update-billing-info/:id', billingController.updateBillingInfo);
 
 // membership API
-route.post('/api/membership/create-purchase', membershipController.createMembership);
-route.get('/api/membership/purchase/user/:user_id', membershipController.findMemberships);
-route.get('/api/membership/purchase/:id', membershipController.findMembership);
-route.put('/api/membership/update-purchase/:id', membershipController.updateMembership);
-route.put('/api/membership/cancel-purchase', membershipController.cancelMembership);
+router.post('/api/membership/create-purchase', membershipController.createMembership);
+router.get('/api/membership/purchase', membershipController.findMembership);
+router.get('/api/membership/purchase/:id', membershipController.findMembership);
+router.put('/api/membership/update-purchase/:id', membershipController.updateMembership);
 
 
-module.exports = route;
+module.exports = router;

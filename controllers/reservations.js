@@ -35,7 +35,7 @@ const getAllReservations = async (userId) => {
 const getReservationByFacilityIdAndDate = async (facilityId, date) => {
     const reservations = await Reservations.find({facility_id: facilityId});
     const bookedSlotsForDate = reservations?.filter(reservation => {
-        return equalDates(reservation.from, new Date(date)) && equalDates(reservation.to, new Date(date));
+        return equalDates(reservation.from, new Date(date)) && equalDates(reservation.to, new Date(date)) && (reservation.status === 'Active');
     });
     return bookedSlotsForDate?.map(bookedSlot => {
         return {
