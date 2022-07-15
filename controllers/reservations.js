@@ -78,7 +78,9 @@ function mergeFacilitiesDataWithReservations(facilitiesData, reservations) {
             reservationDate: reservation.booked_date,
             reservedBy: 'John Doe',
             reservedFor: reservation.reserved_for,
+            reservationStatus: reservation.status,
             equipmentImg: facility.equipmentImg,
+            equipmentName: facility.equipmentName
         }
     });
 }

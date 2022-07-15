@@ -4,19 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon --inspect index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend.git"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "*",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "*",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "*",
+<<<<<<< HEAD
     "multer": "^1.4.5-lts.1",
+=======
+    "nodemailer": "^6.7.7",
+    "nodemon": "^2.0.19",
+>>>>>>> 51f2d55feb120404f0d33a42deaead4a6f793ec8
     "react-redux": "^8.0.2",
     "stripe": "^9.13.0",
     "uuid": "^8.3.2"
