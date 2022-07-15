@@ -9,6 +9,7 @@ route.get('/api/blogs/yourblog/:userId', blogController.getYourBlogs);
 
 // blogs post api.
 route.post('/api/blogs/postBlog', blogController.postBlog);
-
+//blogs update api
+route.put('/api/blogs/updateBlog', blogController.updateBlog);
 module.exports = route;
 

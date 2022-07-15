@@ -111,6 +111,40 @@ const getBlog = (req, res, next) => {
             })
   };
 
+  
+        
+  const updateBlog = (req,res)=> {
+    console.log(req.body);
+    if(!req.body){
+        return res.status(400).send({ 
+            success : false,
+            message : "Content is missing"
+        })
+    }
+
+    const id = req.body.jsonData.id;
+    blogs.findOneAndUpdate({id:id}, req.body.jsonData, { useFindAndModify: false})
+        .then(data => {
+            if(!data){
+                return res.status(404).send({ 
+                    success : false,
+                    message : "No blog found"
+                })
+            }else{
+                return res.status(200).json({
+                    message:"Blog Updated",
+                    success:true
+                })
+            }
+        })
+        .catch(err =>{
+            return res.status(500).json({
+                message:"Internal server error",
+                success:false
+            });
+        })
+};
 
 
-module.exports = {getAllBlogs,getBlog,getYourBlogs,postBlog};
+
+module.exports = {getAllBlogs,getBlog,getYourBlogs,postBlog,updateBlog};
