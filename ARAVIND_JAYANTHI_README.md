@@ -53,34 +53,34 @@ The following folder structure is used for the frontend of this project:
 * **pages:** This folder contains sub-folders, each sub-folder contains frontend code for each page. Each sub-folder contains jsx/tsx corresponding to the page and some folder have css files which has styling corresponding to the page. 
 ## Backend codebase
 In the backend repository [git](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/tree/aravind-jayanthi) the following files are developed by me:
-* routes/facilites.js
-* routes/reservations.js
-* models/facilites.js
-* models/reservations.js
-* controllers/facilites.js
-* controllers/reservations.js
-* .gitlab-ci.yml
+* [routes/facilites.js](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/routes/facilities.js)
+* [routes/reservations.js](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/routes/reservations.js)
+* [models/facilites.js](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/models/facilities.js)
+* [models/reservations.js](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/models/reservations.js)
+* [controllers/facilites.js](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/controllers/facilities.js)
+* [controllers/reservations.js](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/controllers/reservations.js)
+* [.gitlab-ci.yml](https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/.gitlab-ci.yml)
 ## Frontend codebase
 In the frontend repository [git](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/assignment-3-aj) the following files are developed by me:
-* src/pages/AddNewFacility
-* src/pages/Facilities
-* src/pages/FacilityDetails
-* src/pages/ReservationDetails
-* src/pages/Reservations
-* src/pages/EventDetails
-* src/pages/Events
-* src/components/Loader
-* src/components/NoReservations
-* src/EventItem.tsx
-* src/FacilityItem.tsx
-* src/data/AvailabilityData.tsx
-* src/data/AvailabilitySlots.tsx
-* src/data/BookedSlot.ts
-* src/data/Event.ts
-* src/data/FacilitiesInterface.tsx
-* src/data/MyEventInterface.ts
-* src/data/MyEvents.ts
-* src/data/ReservationInterface.tsx
+* [src/pages/AddNewFacility](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/AddNewFacility)
+* [src/pages/Facilities](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/Facilities)
+* [src/pages/FacilityDetails](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/FacilityDetails)
+* [src/pages/ReservationDetails](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/ReservationDetails)
+* [src/pages/Reservations](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/Reservations)
+* [src/pages/EventDetails](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/EventDetails)
+* [src/pages/Events](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/pages/Events)
+* [src/components/Loader](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/components/Loader)
+* [src/components/NoReservations](https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/main/src/components/NoReservations)
+* [src/EventItem.tsx](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/components/EventItem.tsx)
+* [src/FacilityItem.tsx](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/components/FacilityItem.tsx)
+* [src/data/AvailabilityData.tsx](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/AvailabilityData.tsx)
+* [src/data/AvailabilitySlots.tsx](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/AvailaibilitySlots.tsx)
+* [src/data/BookedSlot.ts](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/BookedSlot.ts)
+* [src/data/Event.ts](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/Events.ts)
+* [src/data/FacilitiesInterface.tsx](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/FacilitiesInterfac.tsx)
+* [src/data/MyEventInterface.ts](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/MyEventInterface.ts)
+* [src/data/MyEvents.ts](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/MyEvents.ts)
+* [src/data/ReservationInterface.tsx](https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/main/src/data/ReservationInterface.tsx)
 
 ## Integration Instructions
 
