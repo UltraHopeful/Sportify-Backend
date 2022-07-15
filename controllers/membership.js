@@ -83,15 +83,15 @@ exports.createMembership = (req,res)=>{
             message : "Content is missing"
         })
     }
-
+    console.log(req.body)
     const memInfo = new MembershipDB({
         id : uuidv4(),
-        user_id : req.body.user_id,
-        total_cost : req.body.total_cost,
-        plan_name : req.body.plan_name,
-        start_date : req.body.start_date,
-        end_date : req.body.end_date,
-        status : req.body.status
+        user_id : req.body.userId,
+        total_cost : req.body.backendReqBody[0].total_cost,
+        plan_name : req.body.backendReqBody[0].plan_name,
+        start_date : req.body.backendReqBody[0].start_date,
+        end_date : req.body.backendReqBody[0].end_date,
+        status : req.body.backendReqBody[0].status
     })
 
     // save details in the database
