@@ -3,13 +3,16 @@ require('dotenv').config();
 var express = require('express');
 var cors = require('cors');
 var app = express();
+const corsOptions = {
+    origin: "*",
+}
 app.use(
     express.urlencoded({
         extended: true
     })
 )
 app.use(express.json({limit: '10mb'}))
-app.use(cors())
+app.use(cors(corsOptions))
 
 
 // connect to db
