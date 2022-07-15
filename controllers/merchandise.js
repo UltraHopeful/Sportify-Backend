@@ -1,4 +1,5 @@
 const { request, response } = require('express')
+const { v4: uuidv4 } = require('uuid');
 var Merchandise = require('../models/merchandise')
 
 //display all merchandise

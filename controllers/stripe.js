@@ -5,7 +5,7 @@ const stripe = Stripe(process.env.STRIPE_KEY)
 require("dotenv").config();
 
 
-exports.checkoutSession = async (request,response) => {
+const checkoutSession = async (request,response) => {
     const session = await stripe.checkout.sessions.create({
         line_items: [
           {
@@ -20,8 +20,8 @@ exports.checkoutSession = async (request,response) => {
           },
         ],
         mode: 'payment',
-        success_url: 'https://example.com/success',
-        cancel_url: 'https://example.com/cancel',
+        success_url: 'http://localhost:3000/payment-success',
+        cancel_url: 'http://localhost:3000/membership',
       });
     
       response.send({url: session.url});
@@ -35,8 +35,8 @@ exports.checkoutSession = async (request,response) => {
 //     return 1700;
 // };
 
-// app.post("/create-payment-intent", async (req, res) => {
-//     const items = req.body;
+// app.post("/create-payment-intent", async (request, response) => {
+//     const items = request.body;
 
 //     // Create a PaymentIntent with the order amount and currency
 //     const paymentIntent = await stripe.paymentIntents.create({
@@ -45,7 +45,8 @@ exports.checkoutSession = async (request,response) => {
 //         payment_method_types: ["card", "afterpay_clearpay"]
 //     });
 
-//     res.send({
+//     response.send({
 //         clientSecret: paymentIntent.client_secret,
 //     });
 // });
+module.exports = {checkoutSession}
