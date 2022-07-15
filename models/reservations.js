@@ -3,6 +3,9 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
+/**
+ * Schema for reservations collection in mongodb
+ */
 const reservationSchema = new Schema({
     id: String,
     facility_id: String,

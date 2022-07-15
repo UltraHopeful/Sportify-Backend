@@ -2,6 +2,12 @@
 //Email: ar687531@dal.ca
 const Facilities = require("../models/facilities");
 
+/**
+ * Get data for a single facility which is used to display information in 
+ * reservation details page for a single reservation.
+ * @param {Number} facilityId 
+ * @returns 
+ */
 const getSingleFacilityData = async (facilityId) => {
     const facilityData = await Facilities.findOne({ id: facilityId });
     return new Promise((resolve) => {
@@ -19,6 +25,11 @@ const getSingleFacilityData = async (facilityId) => {
     });
 }
 
+/**
+ * Get images for the facilities which can be viewied in the my reservations page.
+ * @param {List} facilityIds 
+ * @returns 
+ */
 const getFacilitiesData = async (facilityIds) => {
     const faciltiesData = await Facilities.find({
         id:  facilityIds
