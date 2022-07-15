@@ -86,12 +86,12 @@ exports.createMembership = (req,res)=>{
 
     const memInfo = new MembershipDB({
         id : uuidv4(),
-        user_id : req.body.user_id,
-        total_cost : req.body.total_cost,
-        plan_name : req.body.plan_name,
-        start_date : req.body.start_date,
-        end_date : req.body.end_date,
-        status : req.body.status
+        user_id : req.body.userId,
+        total_cost : req.body.backendReqBody.total_cost,
+        plan_name : req.body.backendReqBody.plan_name,
+        start_date : req.body.backendReqBody.start_date,
+        end_date : req.body.backendReqBody.end_date,
+        status : req.body.backendReqBody.status
     })
 
     // save details in the database
