@@ -22,7 +22,7 @@ const checkoutSession = async (request,response) => {
     const session = await stripe.checkout.sessions.create({
         line_items,
         mode: 'payment',
-        success_url: 'http://localhost:3000/membership/purchased-membership?payment=success',
+        success_url: 'http://localhost:3000/purchased-membership?payment=success',
         cancel_url: 'http://localhost:3000/membership',
       });
     
