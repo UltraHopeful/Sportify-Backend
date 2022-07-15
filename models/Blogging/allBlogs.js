@@ -9,8 +9,8 @@ const BlogsSchema = new Schema({
     blogTitle: String,
     shortContent:String,
     blogContent: String,
-    blogImage: String,
-    timeStamp: String
+    blogImage:String,
+    timeStamp:String
 });
 
 const Blogs = new model('Blogs', BlogsSchema);

@@ -2,7 +2,13 @@
 //Email: nv408879@dal.ca
 const { v4: uuidv4 } = require('uuid');
 const blogs = require("../../models/Blogging/allBlogs");
+const multer = require("multer");
 
+var storage = multer.diskStorage({
+    destination :function(request,file,callback){
+        
+    }
+})
 
 const getBlog = (req, res, next) => {
     blogs.findOne({id:req.params.id})
@@ -36,15 +42,15 @@ const getBlog = (req, res, next) => {
         })
     }
     const blogInfo = new blogs({
-        id : uuidv4(),
-        userId : req.body.userId,
-        blogTitle : req.body.blogTitle,
-        blogImage : req.body.blogImage,
-        blogContent : req.body.blogContent,
-        shortContent : req.body.shortContent,
-        timeStamp: req.body.timeStamp
+        id : req.body.jsonData.blogId,
+        userId : req.body.jsonData.userId,
+        blogTitle : req.body.jsonData.blogTitle,
+        blogImage:req.body.jsonData.blogImage,
+        blogContent : req.body.jsonData.blogContent,
+        shortContent : req.body.jsonData.shortContent,
+        timeStamp: req.body.jsonData.timeStamp
     })
-
+    console.log(blogInfo);
     // save details in the database
     blogInfo.save(blogInfo)
         .then(data => {
