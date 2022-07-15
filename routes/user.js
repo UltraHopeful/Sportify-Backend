@@ -12,5 +12,6 @@ route.post('/api/edit-profile', authentication.verifyRequest, userController.edi
 route.post('/api/reset-password', userController.resetPassword);
 route.get('/api/change-password', userController.resetPasswordCheck);
 route.post('/api/change-password', userController.changePassword);
+route.post('/api/delete-profile',authentication.verifyRequest, userController.deleteProfile);
 
 module.exports = route;
