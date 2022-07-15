@@ -32,7 +32,7 @@ const getSingleFacilityData = async (facilityId) => {
  */
 const getFacilitiesData = async (facilityIds) => {
     const faciltiesData = await Facilities.find({
-        id:  facilityIds
+        id: facilityIds
     });
     return new Promise((resolve) => {
         if (faciltiesData.length == 0) {
@@ -43,6 +43,9 @@ const getFacilitiesData = async (facilityIds) => {
                 return {
                     id: facility.id,
                     equipmentImg: facility.image,
+                    equipmentName: facility.name,
+                    equipmentLoc: facility.location,
+                    equipmentCategory: facility.category,
                 }
             }));
         }
