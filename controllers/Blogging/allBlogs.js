@@ -2,14 +2,6 @@
 //Email: nv408879@dal.ca
 const { v4: uuidv4 } = require('uuid');
 const blogs = require("../../models/Blogging/allBlogs");
-const multer = require("multer");
-
-var storage = multer.diskStorage({
-    destination :function(request,file,callback){
-        
-    }
-})
-
 const getBlog = (req, res, next) => {
     blogs.findOne({id:req.params.id})
             .then(data =>{
