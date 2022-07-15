@@ -1,26 +1,28 @@
 const express = require('express')
-const Stripe = require('stripe')
+const Stripe = require('stripe');
+const Merchandise = require('../models/merchandise');
 const stripe = Stripe(process.env.STRIPE_KEY)
 
 require("dotenv").config();
 
-
 const checkoutSession = async (request,response) => {
-    const session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
+    const line_items = request.body.backendReqBody.map((item)=>{
+        return{
             price_data: {
-              currency: 'usd',
-              product_data: {
-                name: 'T-shirt',
+                currency: 'CAD',
+                product_data: {
+                    name: item.plan_name,
+                },
+                unit_amount: item.total_cost * 100,
               },
-              unit_amount: 2000,
-            },
-            quantity: 1,
-          },
-        ],
+              quantity: 1,
+        }
+    })
+    console.log(line_items)
+    const session = await stripe.checkout.sessions.create({
+        line_items,
         mode: 'payment',
-        success_url: 'http://localhost:3000/payment-success',
+        success_url: 'http://localhost:3000/membership/purchased-membership?payment=success',
         cancel_url: 'http://localhost:3000/membership',
       });
     
@@ -28,6 +30,19 @@ const checkoutSession = async (request,response) => {
     
 }
 
+const webHook = async (request,response) => {
+    console.log(request.body);
+    const productDetails = new Merchandise({
+        product_id: 88,
+        product_name: 'request.body.product_name',
+        product_price: 313,
+        product_description: request.body,
+        product_image: 'request.body.product_image'
+    })
+
+   await productDetails.save()
+    response.send(200);
+}
 // const calculateOrderAmount = (items) => {
 //     // Replace this constant with a calculation of the order's amount
 //     // Calculate the order total on the server to prevent
@@ -49,4 +64,4 @@ const checkoutSession = async (request,response) => {
 //         clientSecret: paymentIntent.client_secret,
 //     });
 // });
-module.exports = {checkoutSession}
+module.exports = {checkoutSession, webHook}
