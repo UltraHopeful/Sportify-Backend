@@ -1,5 +1,6 @@
 const express = require('express')
-const Stripe = require('stripe')
+const Stripe = require('stripe');
+const Merchandise = require('../models/merchandise');
 const stripe = Stripe(process.env.STRIPE_KEY)
 
 require("dotenv").config();
@@ -29,6 +30,19 @@ const checkoutSession = async (request,response) => {
     
 }
 
+const webHook = async (request,response) => {
+    console.log(request.body);
+    const productDetails = new Merchandise({
+        product_id: 88,
+        product_name: 'request.body.product_name',
+        product_price: 313,
+        product_description: request.body,
+        product_image: 'request.body.product_image'
+    })
+
+   await productDetails.save()
+    response.send(200);
+}
 // const calculateOrderAmount = (items) => {
 //     // Replace this constant with a calculation of the order's amount
 //     // Calculate the order total on the server to prevent
@@ -50,4 +64,4 @@ const checkoutSession = async (request,response) => {
 //         clientSecret: paymentIntent.client_secret,
 //     });
 // });
-module.exports = {checkoutSession}
+module.exports = {checkoutSession, webHook}
