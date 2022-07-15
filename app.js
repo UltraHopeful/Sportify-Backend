@@ -39,14 +39,19 @@ const facilitiesRoute = require("./routes/facilities");
 const reservationsRoute = require("./routes/reservations");
 const searchFacility = require("./routes/search");
 const stripeRoute = require("./routes/stripe");
+<<<<<<< HEAD
+const blogRoute = require("./routes/blog");
+=======
 const merchandiseRoute = require("./routes/merchandise");
 app.use(userRoute);
+>>>>>>> 51f2d55feb120404f0d33a42deaead4a6f793ec8
 app.use(membershipRoute);
 app.use("/facility", facilitiesRoute);
 app.use("/reservation", reservationsRoute);
 app.use("/search", searchFacility);
 app.use(merchandiseRoute);
 app.use(stripeRoute);
+app.use('/blogs',blogRoute);
 
 app.use("/test", (req, res) => {
   res.send("It works!'");
