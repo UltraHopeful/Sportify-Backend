@@ -5,6 +5,7 @@
 * *Date Created*: 14 JUL 2022
 * *Last Modification Date*: 14 JUL 2022
 * *Application URL*: <https://sportify-prd.herokuapp.com/>
+* *Backend Application URL*: <https://sportify-backend-prd.herokuapp.com/>
 * *Individual Backend Git URL*: <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/tree/aravind-jayanthi>
 * *Individual Frontend Git URL*: <https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/assignment-3-aj>
 * *Group Backend Git URL*: <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/tree/main>
