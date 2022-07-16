@@ -27,8 +27,8 @@ This feature provides services to book facilities like gym equipment, swimming p
 * **Only admin** (check Admin Credentials section for Email and password.) 
 can add new facility by going to the "Facility" page and clicking on the "Add New Facility" button.
 ## Admin Credentails
-* Email: 
-* Password: 
+* Email: sportify5709@gmail.com
+* Password: asd@1234A
 
 ## Built With
 
