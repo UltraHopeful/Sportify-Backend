@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const User = require("../models/user");
 let userType = '';
+// cite : https://www.bezkoder.com/node-js-mongodb-auth-jwt/
 verifyRequest = async (request, response, next) => {
   try {
     let token = request.headers["access-token"];
