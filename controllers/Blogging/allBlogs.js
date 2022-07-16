@@ -80,7 +80,23 @@ const getBlog = (req, res, next) => {
   };
 
   const getYourBlogs = (req, res, next) => {
-    blogs.find({userId:req.params.userId})
+    // const allBlogs = blogs.find({}).then(data=>
+    //     {
+    //         if(!data){
+    //             return res.send({ 
+    //                 success : false,
+    //                 data : "",
+    //                 message : "No blogs found "
+    //             })
+    //         }else{
+    //             return res.send({ 
+    //                 success : true,
+    //                 data : data
+    //             })
+    //         }
+    //     }
+    //     )
+    blogs.find({userId:req.params.id})
             .then(data =>{
                 if(!data){
                     return res.send({ 
@@ -103,8 +119,6 @@ const getBlog = (req, res, next) => {
             })
   };
 
-  
-        
   const updateBlog = (req,res)=> {
     console.log(req.body);
     if(!req.body){
