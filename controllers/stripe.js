@@ -24,8 +24,8 @@ const checkoutSession = async (request,response) => {
     const session = await stripe.checkout.sessions.create({
         line_items,
         mode: 'payment',
-        success_url: `${CLIENT_URL}'/purchased-membership?payment=success`,
-        cancel_url: `${CLIENT_URL}'/membership`,
+        success_url: `${CLIENT_URL}/purchased-membership?payment=success`,
+        cancel_url: `${CLIENT_URL}/membership`,
       });
     
       response.send({url: session.url});
