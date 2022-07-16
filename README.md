@@ -10,7 +10,7 @@ In this project, we are trying to build a sports club management system which pr
 
 ## Authors
 
-* [Alagu Swrnam Karruppiah](al581093@dal.ca) - *(Full Stack Developer)*
+* [Alagu Swrnam Karruppiah](al581093@dal.ca) - *(Full Stack Developer for payment and merchandise feature)*
 * [Aravind Jayanthi](ar687531@dal.ca) - *(Full Stack Developer for facility reservation management feature and CI-CD pipeline)*
 * [Navya Jayapal](nv408879@dal.ca) - *(Full Stack Developer)*
 * [Prachi Kabtiyal](pr522601@dal.ca) - *(Full Stack Developer)*
