@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 require("dotenv").config();
-var express = require("express");
-var cors = require("cors");
-var app = express();
+let express = require("express");
+let cors = require("cors");
+let app = express();
 const corsOptions = {
   origin: "*",
 };
