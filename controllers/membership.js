@@ -1,7 +1,7 @@
-var MembershipDB = require('../models/membership');
+let MembershipDB = require('../models/membership');
 const { v4: uuidv4 } = require('uuid');
 
-// retrieve membership details
+// retrieve membership details using id
 exports.findMembership = (req, res)=>{
     if(req.params.id){
         const id = req.params.id;
@@ -45,7 +45,7 @@ exports.findMembership = (req, res)=>{
     }
 }
 
-// retrieve membership details
+// retrieve user-specific active memberships 
 exports.findMemberships = (req, res)=>{
     if(req.params.user_id){
         const user_id = req.params.user_id;
@@ -143,6 +143,7 @@ exports.updateMembership = (req, res)=>{
         })
 }
 
+//cancel membership
 exports.cancelMembership = (req, res)=>{
     
     MembershipDB.findOneAndUpdate({status:'Ongoing'}, {status:'Cancelled'}, { useFindAndModify: false})

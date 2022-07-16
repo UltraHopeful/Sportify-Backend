@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-var schema = new mongoose.Schema({
+// membershipBilling schema - used to store details of billing details of a user
+let schema = new mongoose.Schema({
     id : String,
     first_name : String,
     last_name : String,

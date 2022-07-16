@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-var schema = new mongoose.Schema({
+// membership schema - used to store details of membership purchase
+let schema = new mongoose.Schema({
     id : String,
     user_id : String,
     total_cost : Number,
