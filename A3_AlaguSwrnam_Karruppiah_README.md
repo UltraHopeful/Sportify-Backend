@@ -99,7 +99,7 @@ The code is deployed on heroku
 
 ### FrontEnd 
 
-### File - <https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/alagu_swrnam_karruppiah/src/pages/Membership/purchasedMembership.js>
+### File Name - <https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/alagu_swrnam_karruppiah/src/pages/Membership/purchasedMembership.js>
 
 _Lines 61-64_
 
@@ -120,9 +120,7 @@ axios.post(url[, data[, config]])
 - [AXIOS API](https://axios-http.com/docs/api_intro)'s Code was used to connect to backend
 - [AXIOS API](https://axios-http.com/docs/api_intro)'s Code was modified to connect to backend repo for the access of the database.
 
-###
-
-### File - <https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/alagu_swrnam_karruppiah/src/pages/Membership/checkout.js>
+### File Name - <https://git.cs.dal.ca/ajayanthi/5709-group10/-/blob/alagu_swrnam_karruppiah/src/pages/Membership/checkout.js>
 
 _Lines 78-94_
 
@@ -165,7 +163,7 @@ const items = JSON.parse(localStorage.getItem('items'));
 
 ### BackEnd 
 
-File - <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/models/merchandise.js>
+### File Name - <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/models/merchandise.js>
 
 _Lines 3-14_
 
@@ -206,9 +204,7 @@ car.driver.toString(); // Something like "5e1a0651741b255ddda996c4"
 - [Mongoose's Documentation](https://mongoosejs.com/docs/schematypes.html#objectids)'s Code was used to get objectID
 - [Mongoose's Documentation](https://mongoosejs.com/docs/schematypes.html#objectids)'s Code was modified by the app requirement
 
-###
-
-### File - <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/controllers/stripe.js>
+### File Name - <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/blob/main/controllers/stripe.js>
 _Lines 8-31_
 
 ```
