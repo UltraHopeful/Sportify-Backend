@@ -3,6 +3,8 @@ const Stripe = require('stripe');
 const Merchandise = require('../models/merchandise');
 const stripe = Stripe(process.env.STRIPE_KEY)
 
+const CLIENT_URL = process.env.FRONTEND_URL
+
 require("dotenv").config();
 
 const checkoutSession = async (request,response) => {
@@ -22,8 +24,8 @@ const checkoutSession = async (request,response) => {
     const session = await stripe.checkout.sessions.create({
         line_items,
         mode: 'payment',
-        success_url: 'http://localhost:3000/purchased-membership?payment=success',
-        cancel_url: 'http://localhost:3000/membership',
+        success_url: `${CLIENT_URL}/purchased-membership?payment=success`,
+        cancel_url: `${CLIENT_URL}/membership`,
       });
     
       response.send({url: session.url});

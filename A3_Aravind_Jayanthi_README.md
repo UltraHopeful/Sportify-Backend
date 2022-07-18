@@ -5,6 +5,7 @@
 * *Date Created*: 14 JUL 2022
 * *Last Modification Date*: 14 JUL 2022
 * *Application URL*: <https://sportify-prd.herokuapp.com/>
+* *Backend Application URL*: <https://sportify-backend-prd.herokuapp.com/>
 * *Individual Backend Git URL*: <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/tree/aravind-jayanthi>
 * *Individual Frontend Git URL*: <https://git.cs.dal.ca/ajayanthi/5709-group10/-/tree/assignment-3-aj>
 * *Group Backend Git URL*: <https://git.cs.dal.ca/kabtiyal/5709-g10-sportify-backend/-/tree/main>
@@ -19,16 +20,20 @@
 ## Facility Reservation Management
 This feature provides services to book facilities like gym equipment, swimming pool, badminton courts, basketball courts etc for the users for their workout or other activities. It also provides the option to cancel the future reservations and make the facility available for other uses. Admin can add new facilities to the club.
 ## Tasks
-* View reservations made by the user in "My Reservations" page.
-* View facilities available in the club for reservation in "Facility" page.
-* Reserve a property for future activity by choosing a appropriate facility and filling the relevant details like date, timeslot, name etc.
-* Cancel future reservation by going to the "My Reservations" page and by clicking view details on the  appropriate reservation. 
+* **View reservations:** To view the reservations made by the user, the user has to login and click on the profile icon which shows my-reservations page on the dropdown. By clicking on the "My Reservations" button users can view their reservations.
+* **View facilities:** User can view facilities by clicking on the "Facility" button on the App bar.
+* **Reserve facility:** User must be logged in to reserve facilites. To book a facility go to facility page and choose the appropriate facility and filling the relevant details like date, timeslot, name etc.
+* **Cancel future reservation:** By going to the "My Reservations" page and by clicking view details on the  appropriate reservation. 
 **This option is only available for the active reservations with future date and time.**
-* **Only admin** (check Admin Credentials section for Email and password.) 
+* **Add New Facility:** **Only admin** (check Admin Credentials section for Email and password.) 
 can add new facility by going to the "Facility" page and clicking on the "Add New Facility" button.
 ## Admin Credentails
-* Email: 
-* Password: 
+* Email: sportify5709@gmail.com
+* Password: asd@1234A
+
+## User Credentials
+* Email: aravindjayanthi28@gmail.com
+* Password: Aravind@98
 
 ## Built With
 

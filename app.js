@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 require("dotenv").config();
-var express = require("express");
-var cors = require("cors");
-var app = express();
+let express = require("express");
+let cors = require("cors");
+let app = express();
 const corsOptions = {
   origin: "*",
 };
@@ -40,6 +40,7 @@ const reservationsRoute = require("./routes/reservations");
 const searchFacility = require("./routes/search");
 const stripeRoute = require("./routes/stripe");
 const merchandiseRoute = require("./routes/merchandise");
+const blogRoute = require("./routes/blog");
 app.use(userRoute);
 app.use(membershipRoute);
 app.use("/facility", facilitiesRoute);
@@ -47,6 +48,7 @@ app.use("/reservation", reservationsRoute);
 app.use("/search", searchFacility);
 app.use(merchandiseRoute);
 app.use(stripeRoute);
+app.use('/blogs',blogRoute);
 
 app.use("/test", (req, res) => {
   res.send("It works!'");
