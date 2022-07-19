@@ -154,13 +154,6 @@ const deleteBlog = (req,res)=> {
      });
     };
 
-// blogs.findByIdAndRemove(req.params.id, function(err){
-//     if(err){
-//         res.redirect("/campgrounds");
-//     } else {
-//         res.redirect("/campgrounds");
-//     }
-//  });
 
 
 
