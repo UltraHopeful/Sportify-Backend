@@ -77,6 +77,7 @@ exports.findMemberships = (req, res)=>{
 // create and save new membership
 exports.createMembership = (req,res)=>{
     // input validation
+    console.log("--- in createMembership----");
     if(!req.body){
         return res.status(400).send({ 
             success : false,
@@ -145,8 +146,10 @@ exports.updateMembership = (req, res)=>{
 
 //cancel membership
 exports.cancelMembership = (req, res)=>{
-    
-    MembershipDB.findOneAndUpdate({status:'Ongoing'}, {status:'Cancelled'}, { useFindAndModify: false})
+
+    console.log("in cancel membership");
+    const user_id = req.body.user_id;
+    MembershipDB.findOneAndUpdate({status:'Ongoing', user_id:user_id}, {status:'Cancelled'}, { useFindAndModify: false})
         .then(data => {
             if(!data){
                 return res.status(404).send({ 
