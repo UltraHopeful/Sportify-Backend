@@ -4,6 +4,7 @@ const express = require('express');
 const {v4: uuidv4} = require('uuid');
 const Facilities = require('../models/facilities');
 const ReservationsController = require('../controllers/reservations');
+const authentication = require('../middleware/authentication')
 const router = express.Router();
 
 /**
@@ -28,7 +29,7 @@ router.get('/all', async (req, res) => {
 /**
  * This API gets all the booked time slots for the facility that are booked by the users.
  */
-router.get('/booked-slots', [(req, res, next) => {
+router.get('/booked-slots', [authentication.verifyRequest, (req, res, next) => {
     const facilityId = req.query.facilityId
     if (!facilityId) {
         return res.status(400).json({
@@ -64,7 +65,7 @@ router.get('/booked-slots', [(req, res, next) => {
  * This API is used to get the details of a single facility 
  * for the given id.
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', authentication.verifyRequest, async (req, res) => {
     const id = req.params.id;
     if (!id) {
         return res.status(400).send({
@@ -97,7 +98,7 @@ router.get('/:id', async (req, res) => {
  * This API is used to post facility data so that 
  * members can use the facility to book appointments.
  */
-router.post('/', async (req, res) => {
+router.post('/', authentication.verifyRequest, async (req, res) => {
     const reqBody = req.body;
     for (const prop in req.body) {
         // check for empty values
