@@ -31,6 +31,7 @@ mongoose
     console.log("Successfully connected to database");
   })
   .catch((err) => console.log(err));
+  // mongoose.set('debug', true);
 //end
 
 const userRoute = require("./routes/user");
@@ -41,7 +42,13 @@ const searchFacility = require("./routes/search");
 const stripeRoute = require("./routes/stripe");
 const merchandiseRoute = require("./routes/merchandise");
 const blogRoute = require("./routes/blog");
+const eventRouter = require('./routes/events');
+const eventBookingRouter = require('./routes/eventBookings');
+const rewardsRoute = require("./routes/rewards");
+const couponsRoute = require("./routes/coupons");
 app.use(userRoute);
+app.use(rewardsRoute);
+app.use(couponsRoute);
 app.use(membershipRoute);
 app.use("/facility", facilitiesRoute);
 app.use("/reservation", reservationsRoute);
@@ -49,6 +56,8 @@ app.use("/search", searchFacility);
 app.use(merchandiseRoute);
 app.use(stripeRoute);
 app.use('/blogs',blogRoute);
+app.use('/events', eventRouter);
+app.use('/event-bookings',eventBookingRouter);
 
 app.use("/test", (req, res) => {
   res.send("It works!'");
