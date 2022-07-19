@@ -32,7 +32,9 @@ const getPoints = async (request, response) => {
     if (findMembership.length > 0) {
       let totalSpentMoney = 0;
       for (const membership of findMembership) {
-        totalSpentMoney += membership.total_cost;
+        if (membership.status !== "Cancelled") {
+          totalSpentMoney += membership.total_cost;
+        }
       }
       //   console.log(totalSpentMoney);
       let totalPoints = Math.round(totalSpentMoney * 10);
