@@ -64,7 +64,7 @@ const getProductData = async (request,response) => {
         });
     }
     try {
-        const product = await Merchandise.find({"id": id});
+        const product = await Merchandise.findOne({product_id: id});
         if (!product || product.length == 0) {
             return response.status(404).send({
                 message: "Product not found!",
@@ -72,7 +72,7 @@ const getProductData = async (request,response) => {
             });
         }
         return response.status(200).send({
-            data: product[0],
+            data: product,
             success: true
         })
     }
@@ -84,4 +84,32 @@ const getProductData = async (request,response) => {
     }
 }
 
-module.exports = { getMerchandiseData, addMerchandiseData, getProductData }
+
+// api to delete the product
+
+const deleteProduct = async (request,response) =>{
+    const id = request.params.id;
+    if (!id) {
+        return response.status(400).send({
+            message: "Id is required!",
+            success: false,
+        });
+    }
+    try{
+        const product = await Merchandise.findOneAndDelete({product_id:id})
+
+        return response.status(200).send({
+            message: "Product Deleted",
+            success: true
+        })
+
+    }
+    catch(error){
+        console.log(error)
+        return response.status(500).json({
+            message:"Internal server error",
+            success:false
+        });
+    }
+}
+module.exports = { getMerchandiseData, addMerchandiseData, getProductData, deleteProduct }
