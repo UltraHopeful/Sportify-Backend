@@ -11,5 +11,8 @@ route.get('/api/blogs/yourblog/:id', blogController.getYourBlogs);
 route.post('/api/blogs/postBlog', blogController.postBlog);
 //blogs update api
 route.put('/api/blogs/updateBlog', blogController.updateBlog);
+
+// to delet blog
+route.delete('/api/blogs/delete/:id', blogController.deleteBlog);
 module.exports = route;
 
