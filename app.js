@@ -36,6 +36,7 @@ mongoose
 
 const userRoute = require("./routes/user");
 const membershipRoute = require("./routes/membership");
+// const broadcastRoute = require("./routes/broadcastRoutes");
 const facilitiesRoute = require("./routes/facilities");
 const reservationsRoute = require("./routes/reservations");
 const searchFacility = require("./routes/search");
@@ -50,6 +51,7 @@ app.use(userRoute);
 app.use(rewardsRoute);
 app.use(couponsRoute);
 app.use(membershipRoute);
+// app.use(broadcastRoute);
 app.use("/facility", facilitiesRoute);
 app.use("/reservation", reservationsRoute);
 app.use("/search", searchFacility);

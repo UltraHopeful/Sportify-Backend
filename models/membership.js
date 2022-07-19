@@ -11,6 +11,6 @@ let schema = new mongoose.Schema({
     status : String
 })
 
-const MembershipDB = mongoose.model('membership', schema);
+const MembershipDB = mongoose.model('memberships', schema);
 
 module.exports = MembershipDB;
