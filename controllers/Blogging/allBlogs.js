@@ -9,7 +9,7 @@ const getBlog = (req, res, next) => {
                     return res.send({ 
                         success : true,
                         data : "",
-                        message : "No such user"
+                        message : "No such Blog"
                     })
                 }else{
                     return res.send({ 
@@ -30,9 +30,10 @@ const getBlog = (req, res, next) => {
     if(!req.body){
         return res.status(400).send({ 
             success : false,
-            message : "Content is missing"
+            message : "Not able to post blog"
         })
     }
+    
     const blogInfo = new blogs({
         id : req.body.jsonData.blogId,
         userId : req.body.jsonData.userId,
@@ -80,22 +81,6 @@ const getBlog = (req, res, next) => {
   };
 
   const getYourBlogs = (req, res, next) => {
-    // const allBlogs = blogs.find({}).then(data=>
-    //     {
-    //         if(!data){
-    //             return res.send({ 
-    //                 success : false,
-    //                 data : "",
-    //                 message : "No blogs found "
-    //             })
-    //         }else{
-    //             return res.send({ 
-    //                 success : true,
-    //                 data : data
-    //             })
-    //         }
-    //     }
-    //     )
     blogs.find({userId:req.params.id})
             .then(data =>{
                 if(!data){
@@ -152,5 +137,31 @@ const getBlog = (req, res, next) => {
 };
 
 
+const deleteBlog = (req,res)=> {
+    blogs.findOneAndDelete({id:req.params.id}, function(err){
+        console.log(err);
+        if(err){
+            return res.status(500).json({
+                message:"Internal server error",
+                success:false
+            });
+        } else {
+            return res.status(200).json({
+                message:"Blog Deleted",
+                success:true
+            })
+        }
+     });
+    };
 
-module.exports = {getAllBlogs,getBlog,getYourBlogs,postBlog,updateBlog};
+// blogs.findByIdAndRemove(req.params.id, function(err){
+//     if(err){
+//         res.redirect("/campgrounds");
+//     } else {
+//         res.redirect("/campgrounds");
+//     }
+//  });
+
+
+
+module.exports = {getAllBlogs,getBlog,getYourBlogs,postBlog,updateBlog,deleteBlog};
