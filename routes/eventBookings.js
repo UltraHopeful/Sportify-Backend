@@ -101,6 +101,7 @@ router.put('/cancel-event/:bookingId/:userId', authentication.verifyRequest, asy
         });
     }
     const updatedBooking = await eventBookingController.cancelBooking(bookingId, userId);
+    await eventController.increaseEventAvailableSeats(booking.eventId, booking.bookedTickets);
     return res.status(200).send({
         data: updatedBooking,
         success: true,

@@ -33,8 +33,16 @@ const updateEventAvailableSeats = async (eventDetails, ticketsBooked) => {
     return await Events.findOneAndUpdate(filter, update, {new: true});
 }
 
+const increaseEventAvailableSeats = async (eventId, cancelledTickets) => {
+    const filter = {id: eventId};
+    const event = await Events.findOne(filter);
+    const updatedAvailableSeats = event.availableCapacity + cancelledTickets;
+    const updated = {availableCapacity: updatedAvailableSeats};
+    return await Events.findOneAndUpdate(filter, updated, {new: true});
+}
+
 const getEventsByIds = async (ids) => {
     return await Events.find({id: {$in: ids}});
 }
 
-module.exports = { getEventsWithinDateRange, getSingleEvent, updateEventAvailableSeats, getEventsByIds, createEvent };
+module.exports = { getEventsWithinDateRange, getSingleEvent, updateEventAvailableSeats, getEventsByIds, createEvent, increaseEventAvailableSeats };
