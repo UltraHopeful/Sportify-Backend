@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 const User = require("../models/user");
+const InvalidToken = require("../models/invalidToken");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const mail = require("../service/mail");
@@ -130,7 +131,7 @@ const signin = async (request, response) => {
           const accessToken = jwt.sign(
             { email: userExists.email, id: userExists._id },
             process.env.SECRET_KEY,
-            { expiresIn: "2h" }
+            { expiresIn: "1h" }
           );
           //   removing unwanted details
           const encodedUser = (({
@@ -171,6 +172,25 @@ const signin = async (request, response) => {
     response.status(500).json({ message: "Internal Server error" });
   }
 };
+
+const signOut = async (request,response) => {
+  const accessToken = request.headers["access-token"];
+  console.log(accessToken);
+  try{
+    const newInvalidToken = new InvalidToken({
+      jwtToken : accessToken
+    })
+    const invalidToken = await newInvalidToken.save();
+    console.log("invalid token save"+invalidToken);
+    if(invalidToken){
+      response.status(200).json({ message: "You successfully logout" });
+    }
+  }
+  catch(error){
+    response.status(500).json({ message: "Internal Server error" });
+  }
+
+}
 
 const editProfile = async (request, response) => {
   const requestBody = request.body;
@@ -372,6 +392,7 @@ const deleteProfile  = async (request, response) => {
 module.exports = {
   register,
   signin,
+  signOut,
   verifyAccount,
   editProfile,
   resetPassword,

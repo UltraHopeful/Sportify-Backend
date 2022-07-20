@@ -8,6 +8,7 @@ const authentication = require('../middleware/authentication')
 route.post('/api/signup', userController.register);
 route.get('/api/verify-account', userController.verifyAccount);
 route.post('/api/signin', userController.signin);
+route.get('/api/signout', authentication.verifyRequest,userController.signOut);
 route.post('/api/edit-profile', authentication.verifyRequest, userController.editProfile);
 route.post('/api/reset-password', userController.resetPassword);
 route.get('/api/change-password', userController.resetPasswordCheck);
